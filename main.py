@@ -47,11 +47,19 @@ async def results_command(update: Update, context: CallbackContext) -> None:
     await waiting_message.delete()
     await update.message.reply_text(text=message, parse_mode="HTML")
 
+async def bachthulot_command(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text("Chức năng này chưa được triển khai.")
+
+async def bachthude_command(update: Update, context: CallbackContext) -> None:
+    await update.message.reply_text("Chức năng này chưa được triển khai.")
+
 
 def main():
     app = Application.builder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("results", results_command))
+    app.add_handler(CommandHandler("bachthulot", bachthulot_command))
+    app.add_handler(CommandHandler("bachthude", bachthude_command))
 
     print("Bot đang chạy...")
     app.run_polling()
