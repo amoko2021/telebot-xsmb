@@ -58,7 +58,7 @@ def main():
     app = Application.builder().token(TOKEN).build()
 
     app.add_handler(CommandHandler("results", results_command))
-    app.add_handler(CommandHandler("bachthulot", bachthulot_command))
+    app.add_handler(CommandHandler("bachthulo", bachthulot_command))
     app.add_handler(CommandHandler("bachthude", bachthude_command))
 
     print("Bot đang chạy...")
