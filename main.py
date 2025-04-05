@@ -9,6 +9,37 @@ load_dotenv()
 
 TOKEN = os.getenv("BOT_TOKEN")  # Thay thế bằng token của bạn
 
+async def get_results_v2():
+    results_url = os.getenv("RESULT_URL_V2")
+
+    try:
+        response = requests.get(results_url)
+
+        if response.status_code == 200:
+            data = response.json()
+            results = data["results"]
+            date = data["time"]
+
+            message = f"📅 <b>Kết quả xổ số ngày {date}</b>\n\n"
+            message += "<pre>\n"
+            message += "┌──────┬───────────────────────────┐\n"
+            message += "│ Giải │ Số trúng                  │\n"
+            message += "├──────┼───────────────────────────┤\n"
+
+            for prize, numbers in results.items():
+                formatted_numbers = ', '.join(numbers)
+                message += f"│ {prize:<4} │ {formatted_numbers:<25} │\n"
+
+            message += "└──────┴───────────────────────────┘\n"
+            message += "</pre>"
+            return message
+
+        else:
+            return "Không thể lấy dữ liệu, vui lòng thử lại sau."
+
+    except Exception as e:
+        return f"Lỗi khi lấy dữ liệu: {e}"
+
 async def get_results():
     results_url = os.getenv("RESULT_URL")
     date_url = os.getenv("DATE_URL")
@@ -43,7 +74,8 @@ async def get_results():
 
 async def results_command(update: Update, context: CallbackContext) -> None:
     waiting_message = await update.message.reply_text("⏳ Đang lấy kết quả...")
-    message = await get_results()
+    #message = await get_results()
+    message = await get_results_v2()
     await waiting_message.delete()
     await update.message.reply_text(text=message, parse_mode="HTML")
 
@@ -66,3 +98,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
