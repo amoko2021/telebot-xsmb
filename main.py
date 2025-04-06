@@ -79,6 +79,13 @@ async def results_command(update: Update, context: CallbackContext) -> None:
     await waiting_message.delete()
     await update.message.reply_text(text=message, parse_mode="HTML")
 
+async def xsmb_command(update: Update, context: CallbackContext) -> None:
+    waiting_message = await update.message.reply_text("⏳ Đang lấy kết quả...")
+    #message = await get_results()
+    message = await get_results()
+    await waiting_message.delete()
+    await update.message.reply_text(text=message, parse_mode="HTML")
+
 async def bachthulot_command(update: Update, context: CallbackContext) -> None:
     await update.message.reply_text("Chức năng này chưa được triển khai.")
 
@@ -89,6 +96,7 @@ async def bachthude_command(update: Update, context: CallbackContext) -> None:
 def main():
     app = Application.builder().token(TOKEN).build()
 
+    app.add_handler(CommandHandler("xsmb", xsmb_command))
     app.add_handler(CommandHandler("results", results_command))
     app.add_handler(CommandHandler("bachthulo", bachthulot_command))
     app.add_handler(CommandHandler("bachthude", bachthude_command))
