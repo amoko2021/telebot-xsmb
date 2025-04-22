@@ -27,7 +27,7 @@ async def get_results_v2():
             message += "├──────┼───────────────────────────┤\n"
 
             for prize, numbers in results.items():
-                formatted_numbers = ', '.join(numbers)
+                formatted_numbers = ', '.join(number[-2:] for number in numbers)
                 message += f"│ {prize:<4} │ {formatted_numbers:<25} │\n"
 
             message += "└──────┴───────────────────────────┘\n"
