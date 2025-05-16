@@ -12,7 +12,7 @@ TOKEN = os.getenv("BOT_TOKEN")  # Thay thế bằng token của bạn
 async def get_results_v2():
     results_url = os.getenv("RESULT_URL_V2")
 
-    try:
+    #try:
         response = requests.get(results_url)
 
         if response.status_code == 200:
@@ -37,8 +37,8 @@ async def get_results_v2():
         else:
             return "Không thể lấy dữ liệu, vui lòng thử lại sau."
 
-    except Exception as e:
-        return f"Lỗi khi lấy dữ liệu: {e}"
+    #except Exception as e:
+       # return f"Lỗi khi lấy dữ liệu: {e}"
 
 async def get_results():
     results_url = os.getenv("RESULT_URL")
