@@ -50,10 +50,11 @@ async def get_results():
 
         if results_response.status_code == 200 and date_response.status_code == 200:
             results = results_response.json()
-            date = date_response.text.strip().replace('"','')
-            match = " ".join(date.split()[1:])  # Lấy phần sau "XSMB"
+            #date = date_response.text.strip().replace('"','')
+            #match = " ".join(date.split()[1:])  # Lấy phần sau "XSMB"
+            date = date_response["date"]
 
-            message = "📅 <b>Kết quả xổ số ngày "+match+"</b>\n\n"
+            message = "📅 <b>Kết quả xổ số ngày "+date+"</b>\n\n"
             message += "<pre>\n"
             message += "┌──────┬───────────────────────────┐\n"
             message += "│ Giải │ Số trúng                  │\n"
