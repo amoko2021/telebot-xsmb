@@ -103,7 +103,7 @@ def main():
     app.add_handler(CommandHandler("bachthulo", bachthulot_command))
     app.add_handler(CommandHandler("bachthude", bachthude_command))
 
-    print("Bot đang chạy...")
+    print("Bot dang chay...")
     app.run_polling()
 
 if __name__ == "__main__":
